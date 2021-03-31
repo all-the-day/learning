@@ -120,3 +120,38 @@ const miaomiao = new Cat('毛毛')
 // static
 console.log( Animal.categoies )
 console.log( Animal.isAnimal(snake))
+
+// 接口 对对象的形状进行描述
+
+
+
+
+interface Radio{
+  switchRadio(): void
+}
+interface Battery {
+  checkBatteryStatus(): void
+}
+
+// 接口 可以继承接口
+interface RaidoWithBattery extends Radio{
+  checkBatteryStatus(): void
+}
+
+class Car implements Radio {
+  switchRadio() {
+  }
+}
+// class Cellphone implements Radio,Battery {
+//   switchRadio() {
+//   }
+//   checkBatteryStatus() {
+//   }
+// }
+
+class Cellphone implements RaidoWithBattery {
+  switchRadio() {
+  }
+  checkBatteryStatus() {
+  }
+}
