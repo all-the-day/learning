@@ -58,7 +58,7 @@ const add = function add( x: number, y: number, z:number = 10 ): number {
   return x+y
 }
 
-const add2 = add
+const add2 = add // 编译器自动类型推断
 // const add3: string = add  不能
 const add4: (x: number, y: number, z?:number) => number = add
 // 类型推断
