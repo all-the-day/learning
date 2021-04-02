@@ -1,10 +1,12 @@
 import React from 'react'
 import Hello from './Hello'
+import Button from './State'
 
-const Com = () => {
+const Com: React.FC = () => {
     return (
       <>
-        <Hello message="duoban" />
+        <Hello  />
+        <Button />
       </>
     )
 }
