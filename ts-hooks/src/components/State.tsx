@@ -1,24 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState, useContext } from 'react'
+// import useMousePositions from './useMousePositions';
+import useURLLoader from './useURLLoader'
+import { ThemeContext } from './index'
+interface IShowRes {
+  message: string;
+  status: string;
+}
 
 const LikeButton: React.FC = () => {
 
+  const color = useContext(ThemeContext)
+
   const [like, setLike] = useState(0);
-  const [positions, setPositions] = useState({x: 0, y: 0});
+  const [data, loading] = useURLLoader('https://dog.ceo/api/breeds/image/random', [like])
+  const dogRes = data as IShowRes
 
-  useEffect( () =>{
+  let A,B
 
-    const updateMouse = (e: MouseEvent) => {
-      setPositions({x: e.clientX, y: e.clientY})
-    }
-    document.addEventListener('click', updateMouse)
-    return () => {
-      document.removeEventListener('click', updateMouse)
-    }
-  })
+  if(A == B){
+    console.log('sfa')
+  }
 
+  // const positions = useMousePositions()
   return (
     <div>
       <button
+        style={ color }
         onClick={
           () => {
             setLike(like + 1)
@@ -26,8 +33,11 @@ const LikeButton: React.FC = () => {
         }
       > { like } 👍 </button>
       <div>
-        X:{  positions.x }, Y:{ positions.y }
+        {/* X:{  positions.x }, Y:{ positions.y } */}
       </div>
+      <div>
+        { dogRes && loading ? '加载中....' :  <img src={ dogRes?.message } alt=""/>}
+        </div>
     </div>
   )
 }
